@@ -1,0 +1,14 @@
+.Pokecard {
+    display: flex;
+    flex-direction: column;
+    width: 20%;
+    margin: 10px;
+    border: 1px maroon solid;
+    /* justify-content: center; */
+}
+
+.Pokecard-img {
+    width: 100px;
+    height: 100px;
+    align-self: center;
+}
