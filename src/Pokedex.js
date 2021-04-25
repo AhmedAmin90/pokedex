@@ -2,7 +2,7 @@ import React , {Component} from 'react';
 import Pokecard from './Pokecard'
 import './Pokedex.css'
 
-const giveNum = (num) => {
+export const giveNum = (num) => {
     if (num < 100 && num >= 10 ) {
       num = "0"+num
     } 
