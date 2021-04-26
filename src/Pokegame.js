@@ -38,10 +38,6 @@ class Pokegame extends Component {
         
         let playOneResult = firstPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0);
         let playerSecondResult = secondPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0)
-
-        console.log(playOneResult)
-        console.log(playerSecondResult)
-        console.log(firstPlayer , secondPlayer)
         return (
             <div className="Pokegame">
                     <div className={`Pokegame-player ${playOneResult > playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`}>
@@ -57,6 +53,7 @@ class Pokegame extends Component {
                                     />
                                     )}
                         </div>
+                        <p> Youssef Power: {playOneResult}</p>
                          <p className="Pokegame-result">{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
                     </div>
                 
@@ -74,6 +71,7 @@ class Pokegame extends Component {
                                 />
                                 )}
                     </div> 
+                    <p> Lina Power: {playerSecondResult}</p>
                     <p className="Pokegame-result" >{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
                 </div>
                
