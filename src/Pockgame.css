@@ -23,9 +23,9 @@
 }
 
 .Pokegame-win {
-    background-color: green;
+    background-color: rgb(103, 202, 103);
 }
 
 .Pokegame-lose {
-    background-color: red;
+    background-color: rgb(231, 154, 154);
 }
