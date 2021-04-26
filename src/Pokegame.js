@@ -57,7 +57,7 @@ class Pokegame extends Component {
                                     />
                                     )}
                         </div>
-                         <p>{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
+                         <p className={playOneResult > playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}>{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
                     </div>
                 
                 
@@ -74,7 +74,7 @@ class Pokegame extends Component {
                                 />
                                 )}
                     </div> 
-                    <p>{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
+                    <p className={playOneResult < playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}>{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
                 </div>
                
             </div>
