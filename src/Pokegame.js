@@ -1,6 +1,7 @@
 import  React , { Component } from 'react';
 import Pokecard from './Pokecard';
-import {giveNum} from './Pokedex'
+import {giveNum} from './Pokedex';
+import './Pockgame.css'
 
 
 class Pokegame extends Component {
@@ -18,6 +19,7 @@ class Pokegame extends Component {
     }
 
     render() {
+        
         let firstPlayer = [];
         let secondPlayer = [];
         while (firstPlayer.length < 4){
@@ -34,32 +36,47 @@ class Pokegame extends Component {
             }
         }
 
+        let playOneResult = firstPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0);
+        let playerSecondResult = secondPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0)
+
+        console.log(playOneResult)
+        console.log(playerSecondResult)
         console.log(firstPlayer , secondPlayer)
         return (
-            <div>
-                <div className="Pokegame-win">
-                    {firstPlayer.map(pok => 
-                        <Pokecard 
-                        key={pok.id}
-                        name={pok.name}
-                        type={pok.type}
-                        img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
-                        exp={pok.base_experience}   
-                        />
-                        )}
-                    
+            <div className="Pokegame">
+                    <div className="Pokegame-player">
+                        <h1> Youssef </h1>
+                        <div className="Pokegame-cards">
+                                {firstPlayer.map(pok => 
+                                    <Pokecard 
+                                    key={pok.id}
+                                    name={pok.name}
+                                    type={pok.type}
+                                    img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
+                                    exp={pok.base_experience}   
+                                    />
+                                    )}
+                        </div>
+                         <p>{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
+                    </div>
+                
+                
+                <div className="Pokegame-player">
+                    <h1>Lina </h1>
+                    <div className="Pokegame-cards">
+                        {secondPlayer.map(pok => 
+                                <Pokecard 
+                                key={pok.id}
+                                name={pok.name}
+                                type={pok.type}
+                                img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
+                                exp={pok.base_experience}   
+                                />
+                                )}
+                    </div> 
+                    <p>{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
                 </div>
-                <div className="Pokegame-lose">
-                {secondPlayer.map(pok => 
-                        <Pokecard 
-                        key={pok.id}
-                        name={pok.name}
-                        type={pok.type}
-                        img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
-                        exp={pok.base_experience}   
-                        />
-                        )}
-                </div>
+               
             </div>
         )
     }

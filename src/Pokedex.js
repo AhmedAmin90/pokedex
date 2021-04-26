@@ -38,7 +38,6 @@ class Pokedex extends Component {
                 /> )}   
           </div> 
         )
-
     }
 }
 

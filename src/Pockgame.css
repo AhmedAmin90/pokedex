@@ -1,0 +1,22 @@
+.Pokegame{
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.Pokegame-player {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: column;
+}
+
+.Pokegame-cards{
+    display: flex;
+    justify-content: space-around;
+
+}
+
+.Pokegame-result{
+    font-size: 20px;
+}
