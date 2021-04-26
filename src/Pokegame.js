@@ -35,7 +35,7 @@ class Pokegame extends Component {
                 secondPlayer.push(this.props.allPok[randomNum])
             }
         }
-
+        
         let playOneResult = firstPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0);
         let playerSecondResult = secondPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0)
 
@@ -44,7 +44,7 @@ class Pokegame extends Component {
         console.log(firstPlayer , secondPlayer)
         return (
             <div className="Pokegame">
-                    <div className="Pokegame-player">
+                    <div className={`Pokegame-player ${playOneResult > playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`}>
                         <h1> Youssef </h1>
                         <div className="Pokegame-cards">
                                 {firstPlayer.map(pok => 
@@ -57,11 +57,11 @@ class Pokegame extends Component {
                                     />
                                     )}
                         </div>
-                         <p className={playOneResult > playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}>{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
+                         <p className="Pokegame-result">{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
                     </div>
                 
                 
-                <div className="Pokegame-player">
+                <div className={`Pokegame-player ${playOneResult < playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`}>
                     <h1>Lina </h1>
                     <div className="Pokegame-cards">
                         {secondPlayer.map(pok => 
@@ -74,7 +74,7 @@ class Pokegame extends Component {
                                 />
                                 )}
                     </div> 
-                    <p className={playOneResult < playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}>{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
+                    <p className="Pokegame-result" >{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
                 </div>
                
             </div>
