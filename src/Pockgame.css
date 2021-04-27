@@ -1,7 +1,7 @@
 .Pokegame{
     display: flex;
     flex-direction: column;
-  
+
 }
 
 .Pokegame-player {
@@ -9,12 +9,44 @@
     flex-wrap: wrap;
     justify-content: space-around;
     flex-direction: column;
+    animation: drop 2s ease-in-out  ;
 }
-
-.Pokegame-cards{
+/* The animation code */
+  @keyframes drop {
+      from {transform: translateY(-50px);}
+      to {transform: translateY(50px);}
+  }
+  
+.Pokegame-fight{
     display: flex;
     justify-content: space-around;
+}
 
+.Pokegame-cards-show{
+    display: flex;
+    flex-direction: column;
+    animation: drop 3s ;
+}
+
+
+.Pokegame-btn{
+    cursor: pointer;
+    background-color: yellow;
+    align-self: center;
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    transition: 0.5s linear;
+    margin: 10px;
+}
+
+.Pokegame-btn:hover{
+    transform: scale(1.2);
+}
+
+.Pokegame-cards-hide{
+    display: none;
 }
 
 .Pokegame-result{
@@ -24,6 +56,8 @@
 
 .Pokegame-win {
     background-color: rgb(103, 202, 103);
+    width: 50%;
+    align-self: center;
 }
 
 .Pokegame-lose {

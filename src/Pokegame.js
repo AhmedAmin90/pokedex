@@ -5,6 +5,15 @@ import './Pockgame.css'
 
 
 class Pokegame extends Component {
+    state = {
+        gameStart: false,
+        expShown: false,
+    }
+
+    startGame = (e)=> {
+        this.setState({gameStart: true})
+    }
+    
     static defaultProps = {
         allPok: [
             {id: 4, name: 'Charmander', type: 'fire', base_experience: 62},
@@ -35,14 +44,30 @@ class Pokegame extends Component {
                 secondPlayer.push(this.props.allPok[randomNum])
             }
         }
+        const showResult = ()=> {
+            let playOneResult = firstPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0);
+            let playerTwoResult = secondPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0);
+            if (playOneResult > playerTwoResult) {
+                document.querySelector('.Pokegame-win').innerText = "Youssef Win"
+            }
+            else if (playOneResult === playerTwoResult) {
+                document.querySelector('.Pokegame-win').innerText = "Draw !"
+            }
+            else {
+                document.querySelector('.Pokegame-win').innerText = "Lina Win"
+            }
+        }
         
-        let playOneResult = firstPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0);
-        let playerSecondResult = secondPlayer.reduce((exp , pok ) => exp + pok.base_experience , 0)
+
         return (
-            <div className="Pokegame">
-                    <div className={`Pokegame-player ${playOneResult > playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`}>
-                        <h1> Youssef </h1>
-                        <div className="Pokegame-cards">
+            <div className="Pokegame"> 
+              <button onClick={this.startGame} className="Pokegame-btn">Start Game !</button>
+              <button onClick={showResult} className="Pokegame-btn">Show The Result</button>
+              <h1 className="Pokegame-win"></h1>
+                <div className="Pokegame-fight">
+                    
+                           <div className={this.state.gameStart ? "Pokegame-cards-show" : "Pokegame-cards-hide"}>
+                               <h1>Youssef</h1>
                                 {firstPlayer.map(pok => 
                                     <Pokecard 
                                     key={pok.id}
@@ -50,34 +75,70 @@ class Pokegame extends Component {
                                     type={pok.type}
                                     img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
                                     exp={pok.base_experience}   
-                                    />
+                                      />
                                     )}
-                        </div>
-                        <p> Youssef Power: {playOneResult}</p>
-                         <p className="Pokegame-result">{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
-                    </div>
-                
-                
-                <div className={`Pokegame-player ${playOneResult < playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`}>
-                    <h1>Lina </h1>
-                    <div className="Pokegame-cards">
-                        {secondPlayer.map(pok => 
-                                <Pokecard 
-                                key={pok.id}
-                                name={pok.name}
-                                type={pok.type}
-                                img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
-                                exp={pok.base_experience}   
-                                />
-                                )}
-                    </div> 
-                    <p> Lina Power: {playerSecondResult}</p>
-                    <p className="Pokegame-result" >{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
+                            </div>
+                        
+                        
+                            <div className={this.state.gameStart ? "Pokegame-cards-show" : "Pokegame-cards-hide"}>
+                                <h1>Lina</h1>
+                                    {secondPlayer.map(pok => 
+                                       <Pokecard 
+                                       key={pok.id}
+                                       name={pok.name}
+                                       type={pok.type}
+                                       img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
+                                       exp={pok.base_experience}   
+                                       />
+                                    )}
+                            </div> 
+                      
+                    
                 </div>
-               
             </div>
         )
     }
 }
 
 export default Pokegame;
+
+
+// <div className="Pokegame">
+//                 <button onClick={this.startGame} className="Pokegame-btn">Start Game !</button>
+//                 {/* {`Pokegame-player ${playOneResult > playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`} */}
+//                     <div className="Pokegame-player">
+//                         <h1> Youssef </h1>
+                        // <div className={this.state.gameStart ? "Pokegame-cards-show" : "Pokegame-cards-hide"}>
+                        //         {firstPlayer.map(pok => 
+                        //             <Pokecard 
+                        //             key={pok.id}
+                        //             name={pok.name}
+                        //             type={pok.type}
+                        //             img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
+                        //             exp={pok.base_experience}   
+                        //             />
+                        //             )}
+                        // </div>
+//                         <p> Youssef Power: {playOneResult}</p>
+//                          <p className="Pokegame-result">{playOneResult > playerSecondResult ? "Youssef Win" : "Youssef Lose"}</p>
+//                     </div>
+                
+//                 {/* {`Pokegame-player ${playOneResult < playerSecondResult ? "Pokegame-win" : "Pokegame-lose"}`} */}
+//                 <div className="Pokegame-player">
+//                     <h1>Lina </h1>
+                    // <div className="Pokegame-cards">
+                    //     {secondPlayer.map(pok => 
+                    //             <Pokecard 
+                    //             key={pok.id}
+                    //             name={pok.name}
+                    //             type={pok.type}
+                    //             img={`https://assets.pokemon.com/assets/cms2/img/pokedex/detail/${giveNum(pok.id)}.png`}
+                    //             exp={pok.base_experience}   
+                    //             />
+                    //             )}
+                    // </div> 
+//                     <p> Lina Power: {playerSecondResult}</p>
+//                     <p className="Pokegame-result" >{playOneResult < playerSecondResult ? "Lina Win" : "Lina Lose"}</p>
+//                 </div>
+               
+//             </div>

@@ -1,7 +1,7 @@
 .Pokecard {
     display: flex;
     flex-direction: column;
-    width: 20%;
+    width: 250px;
     margin: 10px;
     background-color: #D3D3D3;
     border-radius: 5px;
@@ -18,4 +18,15 @@
 .Pokecard-img:hover {
     transform: scale3d(1.5 , 1.5 , 1.5) rotate(20deg);
     transition: 1s ease-in;
+}
+
+.Pokecard-exp-show{
+    visibility: visible;
+    color: firebrick;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.Pokecard-exp-hide{
+    visibility: hidden;
 }
